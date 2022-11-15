@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const colors = require("colors")
 const dotenv = require("dotenv").config();
+const cookieParser = require("cookie-parser");
 const connectDB = require("./config/db");
 const authRoute = require("./routes/authRoutes");
 const { errorMiddleware } = require("./middleware/errorMiddleware");
@@ -11,8 +12,9 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 app.use(cors());
+app.use(cookieParser())
 app.use("/api/auth", authRoute);
 app.use(errorMiddleware)
-app.listen((req, res) => {
+app.listen(PORT,() => {
     console.log(`Server is listening on Port ${PORT}`)
 });
