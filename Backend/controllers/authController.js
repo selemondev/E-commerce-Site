@@ -10,7 +10,7 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new Error("Please fill in all the required fields")
     };
 
-    const userExists = authModel.findOne({ email });
+    const userExists = await authModel.findOne({ email });
 
     if (userExists) {
         res.status(400);
@@ -51,13 +51,13 @@ const loginUser = asyncHandler(async (req, res) => {
     const user = await authModel.findOne({ email })
 
     if (user && await bcrypt.compare(password, user.password)) {
-        res.status(200);
-        res.json({
-            _id: user.id,
-            username: user.username,
-            email: user.email,
-            token: generateToken(user._id)
-        })
+        const { password, ...others } = user._doc;
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET_KEY, {
+            expiresIn: "2d"
+        });
+        res.cookie("token", token, {
+            httpOnly: true
+        }).status(200).json(others)
     } else {
         res.status(400);
         throw new Error("Invalid user credentials")
@@ -66,7 +66,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 
 function generateToken(id) {
-    return jwt.sign({ id }, process.env.JWT_SECRET_KET, {
+    return jwt.sign({ id }, process.env.JWT_SECRET_KEY, {
         expiresIn: "2d"
     })
 };
