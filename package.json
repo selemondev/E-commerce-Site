@@ -1,0 +1,29 @@
+{
+  "name": "fullstack-ecommerce",
+  "version": "1.0.0",
+  "description": "A FullStack E-commerce Site",
+  "main": "server.js",
+  "scripts": {
+    "start": "node Backend/server.js",
+    "dev": "nodemon Backend/server.js"
+  },
+  "keywords": [
+    "FullStack",
+    "E-commerce"
+  ],
+  "author": "Leonard",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
