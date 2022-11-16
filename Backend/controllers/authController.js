@@ -5,7 +5,7 @@ const asyncHandler = require("express-async-handler");
 const registerUser = asyncHandler(async (req, res) => {
     const { email, password, username } = req.body;
 
-    if (!email, !password, !username) {
+    if (!email || !password || !username) {
         res.status(400);
         throw new Error("Please fill in all the required fields")
     };
@@ -62,6 +62,10 @@ const loginUser = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error("Invalid user credentials")
     }
+});
+
+const getCredentials = asyncHandler(async (req, res) => {
+    res.status(200).json(req.user);
 })
 
 
@@ -74,5 +78,6 @@ function generateToken(id) {
 
 module.exports = {
     registerUser,
-    loginUser
+    loginUser,
+    getCredentials
 }
