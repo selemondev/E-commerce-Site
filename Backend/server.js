@@ -7,6 +7,7 @@ const connectDB = require("./config/db");
 const authRoute = require("./routes/authRoutes");
 const productRoute = require("./routes/productRoutes");
 const userRoute = require("./routes/userRoutes");
+const cartRoute = require("./routes/cartRoutes");
 const { errorMiddleware } = require("./middleware/errorMiddleware");
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -18,6 +19,7 @@ app.use(cookieParser())
 app.use("/api/auth", authRoute);
 app.use("/api/products", productRoute);
 app.use("/api/user", userRoute);
+app.use("/api/cart", cartRoute)
 app.use(errorMiddleware);
 app.listen(PORT,() => {
     console.log(`Server is listening on Port ${PORT}`)
