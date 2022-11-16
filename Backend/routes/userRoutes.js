@@ -1,0 +1,10 @@
+const express = require('express');
+const router = express.Router();
+const { protect, verifyIsAdmin } = require("../middleware/authMiddleware");
+const { updateUser, deleteUser, getUserStats, getUsers, findUser } = require("../controllers/userController");
+router.route("/update/user/:id").put(protect, updateUser);
+router.route("/delete/user/:id").delete(protect, deleteUser);
+router.route("/update/user/:id").put(protect, findUser);
+router.route("/get/users").get(verifyIsAdmin, getUsers);
+router.route("/user/stats").get(verifyIsAdmin, getUserStats);
+module.exports = router;
