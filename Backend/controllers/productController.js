@@ -4,9 +4,9 @@ const asyncHandler = require("express-async-handler");
 // create a product
 
 const createProduct = asyncHandler(async (req, res) => {
-    const { title, desc, price, image, inStock, categories } = req.body;
+    const { title, desc, price, image, inStock, categories, color } = req.body;
 
-    if (!title || !desc || !price || !image || !inStock || !categories) {
+    if (!title || !desc || !price || !image || !inStock || !color || !categories) {
         res.status(400);
         throw new Error("Please provide all the required fields")
     };
@@ -14,9 +14,10 @@ const createProduct = asyncHandler(async (req, res) => {
 
     const product = await productModel.create({
         title,
-        description: desc,
+        desc,
         price,
         image,
+        color,
         categories,
         inStock,
         user: req.user.id
@@ -27,8 +28,9 @@ const createProduct = asyncHandler(async (req, res) => {
         res.json({
             _id: product.id,
             title: product.title,
-            description: product.description,
+            description: product.desc,
             price: product.price,
+            color: product.color,
             image: product.image,
             categories: product.categories,
             inStock: product.inStock,
@@ -93,12 +95,14 @@ const getProducts = asyncHandler(async (req, res) => {
 
         if (qNew) {
             products = await productModel.find().sort({ createdAt: -1 }).limit(1);
+            res.status(200).json(products)
         } else if (qCategory) {
             products = await productModel.find({
                 categories: {
                     $in: [qCategory]
                 }
             });
+            res.status(200).json(products)
         } else {
             products = await productModel.find();
             res.status(200).json(products)

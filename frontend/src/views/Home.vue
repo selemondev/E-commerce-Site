@@ -1,14 +1,8 @@
+<script lang="ts" setup>
+import FeaturedProducts from '../components/FeaturedProducts.vue';
+</script>
 <template>
-    <div>
-        
+    <div class="py-8 px-4">
+        <FeaturedProducts/>
     </div>
 </template>
-
-<script lang="ts" setup>
-
-</script>
-
-<style lang="scss">
-
-
-</style>

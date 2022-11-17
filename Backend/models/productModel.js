@@ -20,6 +20,10 @@ const productSchema = mongoose.Schema({
         type: Array
     },
 
+    color: {
+        type: String
+    },
+
     price: {
         type: String,
         required: true
