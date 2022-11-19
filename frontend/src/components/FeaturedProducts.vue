@@ -2,11 +2,6 @@
 import { useProductStore } from '../store/productStore';
 import { ref, watchEffect } from "vue";
 import { ProductType } from "../Types/productTypeInterface";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/css";
-import "swiper/css/navigation";
-import { Navigation } from "swiper";
-const modules = [Navigation];
 const categoryProducts = ref<any>(null);
 const products = ref<any>(null);
 const listOfProducts = ref<ProductType[]>([])
@@ -57,46 +52,35 @@ const genders = [
             </select>
         </div>
         <div>
-            <swiper :navigation="true" :modules="modules" class=" w-full h-full flex-center my-4 overflow-x-scroll">
-                <div v-if="!userInput.valueOf" v-for="product in products" :key="product._id" class="mx-6 space-y-3">
-                    <swiper-slide><img :src="product.image" :alt="product.title" class="w-[200px] h-80">
-                        <div class="space-y-1">
+
+            <div class="flex flex-wrap mt-3 md:flex-between">
+                <div v-if="!userInput.valueOf" v-for="product in products" :key="product._id" class="">
+                    <div>
+                        <img :src="product.image" :alt="product.title" class="w-full h-80">
+                        <div class="space-y-1 max-w-md">
                             <div class="flex-between">
                                 <h2>{{ product.title }}</h2>
                                 <p>{{ product.price }}</p>
                             </div>
-                            <p class="text-gray-600 line-clamp-1">{{ product.desc }}</p>
+                            <p class="text-gray-600 line-clamp-1 w-10">{{ product.desc }}</p>
                         </div>
-                    </swiper-slide>
+                    </div>
+
                 </div>
 
-                <div v-else v-for="product in categoryProducts" :key="product.desc" class="mx-6 space-y-3">
-                    <swiper-slide>
-                        <img :src="product.image" :alt="product.title" class="min-w-[300px] h-80">
-                        <div class="space-y-1">
+                <div v-else class="m-4 space-y-3 min-w-[300px]" v-for="product in categoryProducts" :key="product">
+                    <div class="bg-[#eee] p-4">
+                        <img :src="product.image" :alt="product.title" class="w-full h-80">
+                        <div class="space-y-1 mt-2">
                             <div class="flex-between">
                                 <h2>{{ product.title }}</h2>
                                 <p>{{ product.price }}</p>
                             </div>
-                            <p class="text-gray-600 max-w-[200px] line-clamp-1">{{ product.desc }}</p>
+                            <p class="text-gray-600 line-clamp-1 w-10">{{ product.desc }}</p>
                         </div>
-                    </swiper-slide>
+                    </div>
                 </div>
-            </swiper>
+            </div>
         </div>
-
-        <div class="w-72 text-center">
-            <swiper style="--swiper-navigation-color: #000" :navigation="true" :modules="modules" class="mySwiper">
-                <swiper-slide>Slide 1</swiper-slide>
-                <swiper-slide>Slide 2</swiper-slide>
-                <swiper-slide>Slide 3</swiper-slide>
-                <swiper-slide>Slide 4</swiper-slide>
-                <swiper-slide>Slide 5</swiper-slide>
-                <swiper-slide>Slide 6</swiper-slide>
-                <swiper-slide>Slide 7</swiper-slide>
-                <swiper-slide>Slide 8</swiper-slide>
-                <swiper-slide>Slide 9</swiper-slide>
-            </swiper>
         </div>
-    </div>
 </template>
