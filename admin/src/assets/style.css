@@ -34,8 +34,4 @@
     .icon-style {
         @apply flex items-center justify-center w-9 h-9 rounded-full hover: bg-[#1d9bf0] hover:bg-opacity-20
     }
-
-    .hover {
-        @apply w-full h-[80px] bg-gray-200 cursor-pointer rounded-md
-    }
 }
