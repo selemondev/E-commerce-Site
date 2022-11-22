@@ -62,7 +62,7 @@ const genders = [
                                 <h2>{{ product.title }}</h2>
                                 <p>{{ product.price }}</p>
                             </div>
-                            <p class="text-gray-600 line-clamp-1 w-10">{{ product.desc }}</p>
+                            <p class="text-gray-600 line-clamp-1 w-48">{{ product.desc }}</p>
                         </div>
                     </div>
 
@@ -76,7 +76,7 @@ const genders = [
                                 <h2>{{ product.title }}</h2>
                                 <p>{{ product.price }}</p>
                             </div>
-                            <p class="text-gray-600 line-clamp-1 w-10">{{ product.desc }}</p>
+                            <p class="text-gray-600 line-clamp-1 w-48">{{ product.desc }}</p>
                         </div>
                     </div>
                 </div>
