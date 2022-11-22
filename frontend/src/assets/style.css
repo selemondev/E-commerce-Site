@@ -24,4 +24,47 @@
     .flex-around {
         @apply flex justify-around items-center
     }
+
+    .box1,
+    .box2,
+    .box3 {
+        margin: 5px;
+        width: 35px;
+        height: 3px;
+        background-color: #fff;
+        transition: all 400ms cubic-bezier(.84, .06, .52, 1.8);
+    }
+
+    .sidebar {
+        height: 100%;
+        width: 300px;
+        left: -2%;
+        position: fixed;
+        z-index: 50;
+        background: #000;
+        display: inline-block;
+        list-style: none;
+        transition: all 0.5s;
+    }
+
+    .sidebar li {
+        margin: 10px;
+    }
+
+    .sidebar li a {
+        text-decoration: none;
+        font-size: 20px;
+    }
+
+    .rotate .box1 {
+        transform: rotate(40deg) translate(8px, 3px);
+    }
+
+    .rotate .box3 {
+        transform: rotate(-45deg) translate(8px, -5px);
+    }
+
+    .rotate .box2 {
+        opacity: 0;
+    }
 }

@@ -7,3 +7,8 @@ import Navbar from './components/Navbar.vue';
     <router-view/>
   </div>
 </template>
+<style>
+.active-class {
+  font-weight: bold;
+}
+</style>
