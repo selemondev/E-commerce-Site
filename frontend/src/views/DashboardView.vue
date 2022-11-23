@@ -4,6 +4,7 @@ import SidebarComponent from '../components/SidebarComponent.vue';
 
 <template>
     <div class="flex h-full">
+        <router-view/>
         <SidebarComponent />
     </div>
 </template>
