@@ -18,6 +18,10 @@ export const useProductStore = defineStore({
         async getProducts() {
             const response = await axios.get(getProducts);
             this.products.push(response.data)
+        },
+
+        async sendProducts(title: string, description: string, color: string, price: string, inStock: boolean, selectedImage: string,) {
+            
         }
     }
 });
