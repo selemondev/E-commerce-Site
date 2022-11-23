@@ -7,62 +7,72 @@ const sideBarLinkMenu = [
             {
                 id: 1,
                 name: "Dashboard",
-                icon: "material-symbols:dashboard-outline"
+                icon: "material-symbols:dashboard-outline",
+                path: "#"
             },
 
             {
                 id: 10,
                 name: "Create",
-                icon: "material-symbols:create-new-folder-outline"
+                icon: "material-symbols:create-new-folder-outline",
+                path: "/dashboard/create"
             },
 
 
             {
                 id: 2,
                 name: "Notifications",
-                icon: "ic:outline-notifications"
+                icon: "ic:outline-notifications",
+                path: "#"
             },
 
             {
                 id: 3,
                 name: "Customers",
-                icon: "ci:group"
+                icon: "ci:group",
+                path: "#"
             },
 
             {
                 id: 4,
                 name: "Messages",
-                icon: "majesticons:messages-line"
+                icon: "majesticons:messages-line",
+                path: "#"
             },
 
             {
                 id: 5,
                 name: "Discounts",
-                icon: "ic:outline-discount"
+                icon: "ic:outline-discount",
+                path: "#"
             },
 
             {
                 id: 6,
                 name: "Billing",
-                icon: "system-uicons:document-list"
+                icon: "system-uicons:document-list",
+                path: "#"
             },
 
             {
                 id: 7,
                 name: "Performance",
-                icon: "tabler:activity-heartbeat"
+                icon: "tabler:activity-heartbeat",
+                path: "#"
             },
 
             {
                 id: 8,
                 name: "Help",
-                icon: "ic:round-help-outline"
+                icon: "ic:round-help-outline",
+                path: "#"
             },
 
             {
                 id: 9,
                 name: "Settings",
-                icon: "ph:gear"
+                icon: "ph:gear",
+                path: "#"
             }
         ]
     },
@@ -81,10 +91,7 @@ const sideBarLinkMenu = [
                                     <Icon class="fill-current" :icon="menu.icon" />
                                 </span>
                                 <span>
-                                    <a class="text-sm text-gray-600 group-hover:text-black group-hover:font-semibold"
-                                        href="#">{{
-        menu.name
-                                        }}</a>
+                                    <router-link :to="menu.path" class="text-sm text-gray-600 group-hover:text-black group-hover:font-semibold">{{ menu.name }}</router-link>
                                 </span>
                             </li>
                         </ul>
