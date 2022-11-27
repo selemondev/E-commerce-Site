@@ -7,10 +7,7 @@ const token = ref(false)
 <template>
   <div>
     <Navbar />
-    <router-view v-slot="{ Component, route }">
-        <component v-if="route.name === 'dashboard'" :is="Component" />
-        <component :is="Component" />
-    </router-view>
+    <router-view/>
   </div>
 </template>
 <style>
