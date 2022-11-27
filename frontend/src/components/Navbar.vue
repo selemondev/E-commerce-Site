@@ -2,20 +2,18 @@
 import { Icon } from "@iconify/vue";
 import { ref, watchEffect } from "vue";
 import { useHeaderStore } from '../store/headerStore';
+import { useProductStore } from "../store/productStore";
+const productStore = useProductStore();
 const headerStore = useHeaderStore();
 const sidebarIsOpen = ref(headerStore.mobileNav);
 const rotate = ref<any>("");
-const isAuthenticated = ref<boolean>(false);
+const isAdmin = ref<string | any>("")
 watchEffect(() => {
     rotate.value = headerStore.mobileNav;
+    isAdmin.value = localStorage.getItem("isAdmin")
 })
 const handleSidebar = () => {
     headerStore.handleSidebar(sidebarIsOpen.value = !sidebarIsOpen.value);
-};
-
-const showDropDownMenu = ref<boolean>(false);
-const handleToggleDropDownMenu = () => {
-    return showDropDownMenu.value = !showDropDownMenu.value;
 };
 const navLinks = [
     {
@@ -56,17 +54,27 @@ const navLinks = [
                 </div>
 
                 <div class="flex-center space-x-6">
-                    <router-link to="/dashboard" tag="h1" class="cursor-pointer dashboard">Dashboard</router-link>
-                    <Icon icon="bi:handbag" class="w-6 h-6 cursor-pointer" />
+                    <router-link to="/dashboard" tag="h1" v-if="isAdmin" class="cursor-pointer dashboard">Dashboard
+                    </router-link>
+                    <router-link to="/cart">
+                        <div class="relative">
+                            <div class="rounded-full ml-1 text-center">
+                                <span class="absolute top-1.5 right-2 text-sm font-bold text-red-500">{{
+                                        productStore.cartQuantity
+                                }}</span>
+                            </div>
+                            <Icon icon="bi:handbag" class="w-6 h-6 cursor-pointer" />
+                        </div>
+                    </router-link>
                 </div>
 
-                <div class="flex-center lg:hidden">
+                <!-- <div class="flex-center lg:hidden">
                     <div :class="{ 'rotate': rotate }" @click="handleSidebar">
                         <div class="box1 bg-black"></div>
                         <div class="box2 bg-black"></div>
                         <div class="box3 bg-black"></div>
                     </div>
-                </div>
+                </div> -->
             </nav>
         </header>
     </div>

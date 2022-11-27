@@ -67,4 +67,20 @@
     .rotate .box2 {
         opacity: 0;
     }
+
+    .form-label {
+        @apply block mt-2
+    }
+
+    .form-input {
+        @apply appearance-none py-2 px-2 w-full border border-gray-300 mt-2 rounded-md focus:outline-none focus:ring-1 focus:ring-black placeholder-gray-500
+    }
+
+    .form-btn {
+        @apply w-full py-2 text-white bg-black rounded-md
+    }
+
+    .error {
+        @apply text-red-500 my-2
+    }
 }
