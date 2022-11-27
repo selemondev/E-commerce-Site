@@ -42,12 +42,11 @@ const handleSubmit = async () => {
     if (response) {
         formData.loading = true;
         await axios.post('http://localhost:5000/api/auth/register', {
-            name: formData.username,
+            username: formData.username,
             email: formData.email,
             password: formData.password,
         }).then(response => {
             formData.loading = false;
-            localStorage.setItem("token", response.data);
             window.location.href = router.resolve("/login").href
         }).catch((err) => {
             formData.loading = false

@@ -16,7 +16,7 @@ export const useProductStore = defineStore({
             return state.cart?.length;
         },
 
-        itemQuantity: (state) => (product:ProductType) => {
+        itemQuantity: (state) => (product: ProductType) => {
             const item = state.cart.find((item) => item.id === product._id);
             return item?.quantity;
         },
@@ -38,24 +38,24 @@ export const useProductStore = defineStore({
         },
 
         addToCart(product:ProductType) {
-            const item = this.cart.find((item) => item.id === product._id);
+            const item = this.cart.find((item) => item._id === product._id);
             if (item) {
                 item.quantity++;
             } else {
-                this.cart.push({...[product], quantity: 1});
+                this.cart.push({...product, quantity: 1});
             };
         },
 
         removeFromCart(product:ProductType) {
-            const item = this.cart.find((item) => item.id === product._id);
+            const item = this.cart.find((item) => item._id === product._id);
             if (item) {
                 if (item.quantity > 1) {
                     item.quantity--;
                 } else {
-                    this.cart = this.cart.filter((item) => item.id !== product._id);
+                    this.cart = this.cart.filter((item) => item._id !== product._id);
                 }
             };
-        }
+        },
 
     }
 });
