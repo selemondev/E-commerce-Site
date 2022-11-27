@@ -17,7 +17,9 @@ watchEffect(() => {
 });
 
 const handleAddToCart = (product: ProductType) => {
-    productStore.addToCart(product)
+    product.forEach((item:ProductType) => {
+        productStore.addToCart(item)
+    })
 }
 </script>
 <template>

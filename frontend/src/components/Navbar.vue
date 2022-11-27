@@ -3,14 +3,18 @@ import { Icon } from "@iconify/vue";
 import { ref, watchEffect } from "vue";
 import { useHeaderStore } from '../store/headerStore';
 import { useProductStore } from "../store/productStore";
+import { useRouter } from "vue-router";
 const productStore = useProductStore();
 const headerStore = useHeaderStore();
+const router = useRouter();
 const sidebarIsOpen = ref(headerStore.mobileNav);
 const rotate = ref<any>("");
-const isAdmin = ref<string | any>("")
+const isAdmin = ref<boolean | any>(false);
+const token = ref<string | any>("");
 watchEffect(() => {
     rotate.value = headerStore.mobileNav;
-    isAdmin.value = localStorage.getItem("isAdmin")
+    isAdmin.value = localStorage.getItem("isAdmin");
+    token.value = localStorage.getItem("token");
 })
 const handleSidebar = () => {
     headerStore.handleSidebar(sidebarIsOpen.value = !sidebarIsOpen.value);
@@ -35,7 +39,14 @@ const navLinks = [
         id: 4,
         name: "Kids"
     }
-]
+];
+
+const handleLogOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("cart");
+    localStorage.removeItem("isAdmin");
+    window.location.href = router.resolve("/").href
+};
 </script>
 <template>
     <div>
@@ -54,8 +65,9 @@ const navLinks = [
                 </div>
 
                 <div class="flex-center space-x-6">
-                    <router-link to="/dashboard" tag="h1" v-if="isAdmin" class="cursor-pointer dashboard">Dashboard
+                    <router-link to="/dashboard" tag="h1" v-if="isAdmin === true" class="cursor-pointer dashboard">Dashboard
                     </router-link>
+                    <button v-if="token" @click="handleLogOut" class="bg-black text-white text-sm py-1.5 px-2 rounded-md border border-black transition duration-200 ease-in hover:bg-white hover:text-black">Log Out</button>
                     <router-link to="/cart">
                         <div class="relative">
                             <div class="rounded-full ml-1 text-center">
